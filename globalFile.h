@@ -1,55 +1,31 @@
 #pragma once
 
-//管理员文件
+//锟斤拷锟斤拷员锟侥硷拷
 #define ADMIN_FILE  "admin.txt"
-//学生文件
+//学锟斤拷锟侥硷拷
 #define STUDENT_FILE  "student.txt"
-//教师文件
+//锟斤拷师锟侥硷拷
 #define TEACHER_FILE  "teacher.txt"
-//机房信息文件
+//锟斤拷锟斤拷锟斤拷息锟侥硷拷
 #define COMPUTER_FILE  "computerRoom.txt"
-//订单文件
+//锟斤拷锟斤拷锟侥硷拷
 #define ORDER_FILE  "order.txt"
 
-#define LINUX_R "read"
-#define LINUX_C "clear"
-#define WINDOW_P "pause"
-#define WINDOW_C "cls"
+ #ifdef _WIN32
+ #define READ "pause"
+ #define PAUSE "cls" 
+ #endif
 
-//返回当前系统
-static int returnSystem() {
+ #ifdef linux
+ #define READ "read"
+ #define PAUSE "clear"
+ #endif
 
-	int no_os_flag = 1;
-#ifdef linux
+ #ifdef _UNIX
+ #define READ "read"
+ #define PAUSE "clear"
+ #endif
 
-	no_os_flag = 0;
+const char* p_read = READ;
 
-#endif
-
-#ifdef _UNIX
-
-	no_os_flag = 0;
-
-
-#endif
-
-#ifdef __WINDOWS_
-
-	no_os_flag = 1;
-
-
-#endif
-
-#ifdef _WIN32
-
-	no_os_flag = 1;
-
-
-#endif
-
-	return no_os_flag;
-}
-
-static const char* p_read = returnSystem() == 0 ? LINUX_R : WINDOW_P;
-
-static const char* c_clear = returnSystem() == 0 ? LINUX_C : WINDOW_C;
+const char* c_clear = PAUSE;
